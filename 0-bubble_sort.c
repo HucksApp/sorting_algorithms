@@ -5,13 +5,13 @@
  * @array: the array to be sort
  * @size: the size of the array
  * Big O Details
- *  fn(x) E 0(n2)
+ *  fn(x) E 0(n^2)
  *  Best Case: O(n): check all with list already
  *      in asscending order(no bigger num comes first)
  *
  *  Medium Case: ------
  *  Worst Case:   --------
- *                  O(n2)
+ *                  O(n^2)
 */
 void bubble_sort(int *array, size_t size)
 {
