@@ -41,7 +41,7 @@ void insertion_sort_list(listint_t **list)
 		{
 			if (sot_tail->n > insrt->n)
 			{
-				swapNode(insrt, sort_tail, list);
+				swapNode(insrt, sot_tail, list);
 				print_list(*list);
 			}
 			sot_tail = sot_tail->prev;
