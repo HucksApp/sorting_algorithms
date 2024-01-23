@@ -19,7 +19,7 @@ void selection_sort(int *array, size_t size)
 			for (iter = index + 1 ; iter < (int)size; iter++)
 				if (array[iter] < smallest)
 					smallest = array[iter], ind = iter;
-	
+
 			array[ind] = array[index];
 			array[index] = smallest;
 			print_array(array, size);
