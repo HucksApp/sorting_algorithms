@@ -1,26 +1,30 @@
 #include "sort.h"
-
 /**
- * swapNode - swap 2 element in an list
+ * swap - swap 2 element in an list
  * @head: head of list
- * @nodeA: node
- * @nodeB: node
+ * @a: node
+ * @b: node
  */
-void swapNode(listint_t *nodeA, listint_t *nodeB, listint_t **head)
+void swap(listint_t *a, listint_t *b, listint_t **head)
 {
-	if (nodeA->next)
-		nodeA->next->prev = nodeB;
-	if (nodeB->prev)
-		nodeB->prev->next = nodeA;
-	nodeB->next = nodeA->next;
-	nodeA->prev = nodeB->prev;
-	nodeB->prev = nodeA;
-	nodeA->next = nodeB;
-	if (nodeA->prev == NULL)
-		*head = nodeA;
+	listint_t *aux1 = NULL, *aux2 = NULL;
+
+	if (a == NULL || b == NULL)
+		return;
+	aux1 = a->prev;
+	aux2 = b->next;
+	/* if nodes are adjacent*/
+	if (aux1)
+		aux1->next = b;
+	if (aux2)
+		aux2->prev = a;
+	a->next = aux2;
+	a->prev = b;
+	b->next = a;
+	b->prev = aux1;
+	if (aux1 == NULL)
+		*head = b;
 }
-
-
 /**
  * insertion_sort_list  - insertion_sort_list
  * @list: doubly liked list
@@ -28,24 +32,25 @@ void swapNode(listint_t *nodeA, listint_t *nodeB, listint_t **head)
  */
 void insertion_sort_list(listint_t **list)
 {
-	listint_t *sot_tail, *insrt, *nxt = *list;
+	listint_t *head, *prev;
+	int value;
 
-	if (!list || !nxt || !(nxt->next))
-		return;
-
-	while (nxt)
+	if (list == NULL || (*list)->next == NULL || (*list) == NULL)
 	{
-		insrt = nxt;
-		sot_tail = nxt->prev;
-		while (sot_tail)
+		return;
+	}
+	head = *list;
+	while (head)
+	{
+		prev = head->prev;
+				value = head->n;
+
+		while (prev && prev->n > value)
 		{
-			if (sot_tail->n > insrt->n)
-			{
-				swapNode(insrt, sot_tail, list);
-				print_list(*list);
-			}
-			sot_tail = sot_tail->prev;
+			swap(prev, head, list);
+			print_list(*list);
+			prev = head->prev;
 		}
-		nxt = nxt->next;
+		head = head->next;
 	}
 }
