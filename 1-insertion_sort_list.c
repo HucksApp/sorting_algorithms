@@ -6,7 +6,7 @@
  * @nodeA: node
  * @nodeB: node
  */
-void swapNode(listint_t *nodeA, listint_t * nodeB, listint_t **head)
+void swapNode(listint_t *nodeA, listint_t * nodeB, listint_t ** head)
 {
 	if (nodeA->next)
 		nodeA->next->prev = nodeB;
