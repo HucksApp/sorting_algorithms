@@ -12,14 +12,15 @@ void selection_sort(int *array, size_t size)
 	int index, iter, ind, smallest;
 
 
-	for(index = 0; index < size-1 ; index++)
+	for (index = 0; index < size-1 ; index++)
 	{
-    smallest = array[index];
-    for(iter = index + 1 ; iter < size; iter++)
-      if(array[iter] < smallest)
-        smallest = array[iter], ind = iter;
-    array[ind] = array[index];
-    array[index] = smallest;
-    print_array(array, size);
+    		smallest = array[index];
+	    	for (iter = index + 1 ; iter < size; iter++)
+			if(array[iter] < smallest)
+				smallest = array[iter], ind = iter;
+
+		array[ind] = array[index];
+		array[index] = smallest;
+    		print_array(array, size);
 	}
 }
