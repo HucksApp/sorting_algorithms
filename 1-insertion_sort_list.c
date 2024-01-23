@@ -8,15 +8,15 @@
  */
 void swapNode(listint_t *nodeA, listint_t * nodeB, listint_t **head)
 {
-	if(nodeA->next)
+	if (nodeA->next)
 		nodeA->next->prev = nodeB;
-	if(nodeB->prev)
+	if (nodeB->prev)
 		nodeB->prev->next = nodeA;
 	nodeB->next = nodeA->next;
 	nodeA->prev = nodeB->prev;
 	nodeB->prev = nodeA;
 	nodeA->next = nodeB;
-	if(nodeA->prev == NULL)
+	if (nodeA->prev == NULL)
 		*head = nodeA;
 }
 
@@ -33,7 +33,7 @@ void insertion_sort_list(listint_t **list)
 	if (!list || !nxt || !(nxt->next))
 		return;
 
-	while(nxt)
+	while (nxt)
 	{
 		insrt = nxt;
 		sot_tail = nxt->prev;
