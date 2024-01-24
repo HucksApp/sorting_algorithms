@@ -28,9 +28,12 @@ void swapNode(listint_t *nodeA, listint_t *nodeB, listint_t **head)
  */
 void insertion_sort_list(listint_t **list)
 {
-	listint_t *sot_tail, *insrt, *nxt = *list;
+	listint_t *sot_tail, *insrt, *nxt;
 
-	if (!list || !nxt || !(nxt->next))
+	if(list == NULL || *list == NULL || (*list)->next == NULL)
+		return;
+	nxt = *list;
+	if (!nxt )
 		return;
 
 	while (nxt)
