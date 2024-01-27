@@ -60,7 +60,6 @@ void cocktail_sort_list(listint_t **list)
 			if(curr->n < curr->prev->n)
 			{
 				not_sorted = 1;
-				p = p->prev;
 				DLNodeSwap(list, curr->prev, curr);
 				print_list(*list);
 			}
