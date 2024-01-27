@@ -35,7 +35,7 @@ void cocktail_sort_list(listint_t **list)
 	if (!list || !(*list) || !(*list)->next)
 		return;
 
-	do {
+	do {	 /* asume list is sorted (not sorted is False) */
 		not_sorted = 0;
 		curr = *list;
 
@@ -43,7 +43,7 @@ void cocktail_sort_list(listint_t **list)
 		{
 			if (curr->n > curr->next->n)
 			{
-				not_sorted = 1;
+				not_sorted = 1; /* list is not sorted */
 				DLNodeSwap(list, curr, curr->next);
 				print_list(*list);
 			}
@@ -51,19 +51,20 @@ void cocktail_sort_list(listint_t **list)
 				curr = curr->next;
 		}
 
-		if (!not_sorted) /* list is sorted*/
+		if (!not_sorted) /* list is sorted (not * not)-> True)*/
 			break;
 
 		while (curr && curr->prev)
 		{
 			if (curr->n < curr->prev->n)
 			{
-				not_sorted = 1;
+				not_sorted = 1; /* list is not sorted */
 				DLNodeSwap(list, curr->prev, curr);
 				print_list(*list);
 			}
 			else
 				curr = curr->prev;
 		}
+	/* while list is not sorted */
 	} while (not_sorted);
 }
