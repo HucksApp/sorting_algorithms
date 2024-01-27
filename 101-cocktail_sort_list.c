@@ -1,48 +1,26 @@
 #include "sort.h"
 
 /**
- * list_len - function returns length of list
+ * DLNodeSwap - function swaps double linked nodes
  * @list: head of list
- *
- * Return: length
+ * @NodeA: pointer to node A
+ * @NodeB: pointer to node B
  */
-size_t list_len(listint_t *list)
+void DLNodeSwap(listint_t **list, listint_t *NodeA, listint_t *NodeB)
 {
-	size_t len = 0;
+	if (NodeA->prev)
+		NodeA->prev->next = NodeB;
+	if(NodeB->next)
+		NodeB->next->prev = NodeA;
+	NodeB->prev =  NodeA->prev;
+	NodeA->next = NodeB->next;
+	NodeA->prev = NodeB;
+	NodeB->next = NodeA;
 
-	while (list)
-	{
-		len++;
-		list = list->next;
-	}
-	return (len);
+	if(NodeB->prev == NULL)
+		*list = NodeB;
 }
 
-/**
- * switch_nodes - function swaps nodes at pointer p with the following node
- * @list: head of list
- * @p: pointer to node
- */
-void switch_nodes(listint_t **list, listint_t **p)
-{
-	listint_t *one, *two, *three, *four;
-
-	one = (*p)->prev;
-	two = *p;
-	three = (*p)->next;
-	four = (*p)->next->next;
-	two->next = four;
-	if (four)
-		four->prev = two;
-	three->next = two;
-	three->prev = two->prev;
-	if (one)
-		one->next = three;
-	else
-		*list = three;
-	two->prev = three;
-	*p = three;
-}
 
 /**
  *  cocktail_sort_list - function sorts a doubly linked list using
@@ -51,40 +29,43 @@ void switch_nodes(listint_t **list, listint_t **p)
  */
 void cocktail_sort_list(listint_t **list)
 {
-	listint_t *p;
-	int sorted = 0;
+	int index, not_sorted;
+	listint_t *curr;
 
-	if (!list || !*list || list_len(*list) < 2)
+	if (!list || !(*list) || !(*list)->next)
 		return;
-	p = *list;
-	while (!sorted)
+
+	do
 	{
-		sorted = 1;
-		while (p->next)
+		not_sorted = 0;
+		curr = *list;
+
+		while (curr && curr->next)
 		{
-			if (p->n > p->next->n)
+			if(curr->n > curr->next->n)
 			{
-				sorted = 0;
-				switch_nodes(list, &p);
+				not_sorted = 1;
+				DLNodeSwap(list, curr, curr->next);
 				print_list(*list);
 			}
 			else
-				p = p->next;
+				curr = curr->next;
 		}
-		if (sorted)
+
+		if(!not_sorted) /* list is sorted*/
 			break;
-		p = p->prev;
-		while (p->prev)
+
+		while (curr && curr->prev)
 		{
-			if (p->n < p->prev->n)
+			if(curr->n < curr->prev->n)
 			{
-				sorted = 0;
+				not_sorted = 1;
 				p = p->prev;
-				switch_nodes(list, &p);
+				DLNodeSwap(list, curr->prev, curr);
 				print_list(*list);
 			}
 			else
-				p = p->prev;
+				curr = curr->prev;
 		}
-	}
+	}while (not_sorted);
 }
