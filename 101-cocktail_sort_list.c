@@ -66,5 +66,6 @@ void cocktail_sort_list(listint_t **list)
 			else
 				curr = curr->prev;
 		}
-	}while (not_sorted);
+	}
+	while (not_sorted);
 }
