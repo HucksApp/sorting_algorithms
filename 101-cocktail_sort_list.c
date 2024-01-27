@@ -35,8 +35,7 @@ void cocktail_sort_list(listint_t **list)
 	if (!list || !(*list) || !(*list)->next)
 		return;
 
-	do
-	{
+	do {
 		not_sorted = 0;
 		curr = *list;
 
@@ -66,6 +65,5 @@ void cocktail_sort_list(listint_t **list)
 			else
 				curr = curr->prev;
 		}
-	}
-	while (not_sorted);
+	} while (not_sorted);
 }
