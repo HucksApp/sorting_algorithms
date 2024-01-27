@@ -10,26 +10,26 @@ void DLNodeSwap(listint_t **list, listint_t *NodeA, listint_t *NodeB)
 {
 	if (NodeA->prev)
 		NodeA->prev->next = NodeB;
-	if(NodeB->next)
+	if (NodeB->next)
 		NodeB->next->prev = NodeA;
 	NodeB->prev =  NodeA->prev;
 	NodeA->next = NodeB->next;
 	NodeA->prev = NodeB;
 	NodeB->next = NodeA;
 
-	if(NodeB->prev == NULL)
+	if (NodeB->prev == NULL)
 		*list = NodeB;
 }
 
 
 /**
  *  cocktail_sort_list - function sorts a doubly linked list using
- * the cocktail sort algorithm
+ *  the cocktail sort algorithm
  * @list: pointer to list
  */
 void cocktail_sort_list(listint_t **list)
 {
-	int index, not_sorted;
+	int not_sorted;
 	listint_t *curr;
 
 	if (!list || !(*list) || !(*list)->next)
@@ -42,7 +42,7 @@ void cocktail_sort_list(listint_t **list)
 
 		while (curr && curr->next)
 		{
-			if(curr->n > curr->next->n)
+			if (curr->n > curr->next->n)
 			{
 				not_sorted = 1;
 				DLNodeSwap(list, curr, curr->next);
@@ -52,12 +52,12 @@ void cocktail_sort_list(listint_t **list)
 				curr = curr->next;
 		}
 
-		if(!not_sorted) /* list is sorted*/
+		if (!not_sorted) /* list is sorted*/
 			break;
 
 		while (curr && curr->prev)
 		{
-			if(curr->n < curr->prev->n)
+			if (curr->n < curr->prev->n)
 			{
 				not_sorted = 1;
 				DLNodeSwap(list, curr->prev, curr);
