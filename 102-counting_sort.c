@@ -1,23 +1,20 @@
 #include "sort.h"
 
 /**
- * get_max - Get the maximum value in an array of integers.
+ * maxNum - Set the maximum value in an array of integers.
  * @array: An array of integers.
  * @size: The size of the array.
- *
- * Return: The maximum integer in the array.
+ * @max: Maximum num in the array.
+ * 
  */
-int get_max(int *array, int size)
+void maxNum(int *array, size_t size, int *max)
 {
-	int max, i;
+	int index;
+	*max = array[0];
 
-	for (max = array[0], i = 1; i < size; i++)
-	{
-		if (array[i] > max)
-			max = array[i];
-	}
-
-	return (max);
+	for (index = 1; index < size; index++)
+		if (array[index] > *max) 
+			*max = array[index];/* max */
 }
 
 /**
@@ -30,39 +27,33 @@ int get_max(int *array, int size)
  */
 void counting_sort(int *array, size_t size)
 {
-	int *count, *sorted, max, i;
+	int range, max, index;
+	int *counts, sorted[size];
 
 	if (array == NULL || size < 2)
 		return;
 
-	sorted = malloc(sizeof(int) * size);
-	if (sorted == NULL)
+	maxNum(array, size, &max);
+	range = max + 1; /* 0 to max */
+
+	
+	counts = (int *)malloc(sizeof(int) * range);
+	if(!counts)
 		return;
-	max = get_max(array, size);
-	count = malloc(sizeof(int) * (max + 1));
-	if (count == NULL)
-	{
-		free(sorted);
-		return;
-	}
+	
+	for (index = 0; index < range; index++) 
+		counts[index] = 0; /*init counts*/
+	for (index = 0; index < (int)size; index++) 
+		counts[array[index]]++; /*count occurrence*/
+	for (index = 1; index < range; index++)
+		/*cummutative counts array */
+		counts[index] += counts[index - 1];
+	print_array(count, range);
 
-	for (i = 0; i < (max + 1); i++)
-		count[i] = 0;
-	for (i = 0; i < (int)size; i++)
-		count[array[i]] += 1;
-	for (i = 0; i < (max + 1); i++)
-		count[i] += count[i - 1];
-	print_array(count, max + 1);
+	for (index = size - 1; index >= 0; counts[array[index]]--, index--)
+		 sorted[counts[array[index]] -1] = array[index];
 
-	for (i = 0; i < (int)size; i++)
-	{
-		sorted[count[array[i]] - 1] = array[i];
-		count[array[i]] -= 1;
-	}
-
-	for (i = 0; i < (int)size; i++)
-		array[i] = sorted[i];
-
-	free(sorted);
-	free(count);
+	for (index = 0; index < (int)size; index++)
+		array[index] = sorted[index];
+	free(counts);
 }
