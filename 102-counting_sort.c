@@ -48,7 +48,7 @@ void counting_sort(int *array, size_t size)
 	for (index = 1; index < range; index++)
 		/*cummutative counts array */
 		counts[index] += counts[index - 1];
-	print_array(count, range);
+	print_array(counts, range);
 
 	for (index = size - 1; index >= 0; counts[array[index]]--, index--)
 		 sorted[counts[array[index]] -1] = array[index];
