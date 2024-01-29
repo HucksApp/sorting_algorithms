@@ -12,7 +12,7 @@ void maxNum(int *array, size_t size, int *max)
 	int index;
 	*max = array[0];
 
-	for (index = 1; index < size; index++)
+	for (index = 1; index < (int)size; index++)
 		if (array[index] > *max) 
 			*max = array[index];/* max */
 }
@@ -28,7 +28,7 @@ void maxNum(int *array, size_t size, int *max)
 void counting_sort(int *array, size_t size)
 {
 	int range, max, index;
-	int *counts, sorted[size];
+	int *counts, sorted[(int)size];
 
 	if (array == NULL || size < 2)
 		return;
