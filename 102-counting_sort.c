@@ -28,7 +28,7 @@ void maxNum(int *array, size_t size, int *max)
 void counting_sort(int *array, size_t size)
 {
 	int range, max, index;
-	int *counts, sorted[(int)size];
+	int *counts, *sorted;
 
 	if (array == NULL || size < 2)
 		return;
@@ -36,11 +36,15 @@ void counting_sort(int *array, size_t size)
 	maxNum(array, size, &max);
 	range = max + 1; /* 0 to max */
 
-	
+	sorted = malloc(sizeof(int) * size);
+	if (sorted == NULL)
+		return;
 	counts = (int *)malloc(sizeof(int) * range);
 	if(!counts)
+	{
+		free(sorted);
 		return;
-	
+	}
 	for (index = 0; index < range; index++) 
 		counts[index] = 0; /*init counts*/
 	for (index = 0; index < (int)size; index++) 
@@ -56,4 +60,5 @@ void counting_sort(int *array, size_t size)
 	for (index = 0; index < (int)size; index++)
 		array[index] = sorted[index];
 	free(counts);
+	free(sorted);
 }
