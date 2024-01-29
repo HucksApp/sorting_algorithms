@@ -5,7 +5,7 @@
  * @array: An array of integers.
  * @size: The size of the array.
  * @max: Maximum num in the array.
- * 
+ *
  */
 void maxNum(int *array, size_t size, int *max)
 {
@@ -40,14 +40,14 @@ void counting_sort(int *array, size_t size)
 	if (sorted == NULL)
 		return;
 	counts = (int *)malloc(sizeof(int) * range);
-	if(!counts)
+	if (!counts)
 	{
 		free(sorted);
 		return;
 	}
-	for (index = 0; index < range; index++) 
+	for (index = 0; index < range; index++)
 		counts[index] = 0; /*init counts*/
-	for (index = 0; index < (int)size; index++) 
+	for (index = 0; index < (int)size; index++)
 		counts[array[index]]++; /*count occurrence*/
 	for (index = 1; index < range; index++)
 		/*cummutative counts array */
@@ -55,7 +55,7 @@ void counting_sort(int *array, size_t size)
 	print_array(counts, range);
 
 	for (index = size - 1; index >= 0; counts[array[index]]--, index--)
-		 sorted[counts[array[index]] -1] = array[index];
+		sorted[counts[array[index]] -1] = array[index];
 
 	for (index = 0; index < (int)size; index++)
 		array[index] = sorted[index];
