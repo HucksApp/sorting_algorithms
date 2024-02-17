@@ -1,6 +1,6 @@
 # Sorting Algorithms 🗃 ⏳
 
-## Description ## 📋
+## Description 📋
 This repo contain implementation of different sorting algorithm in C.
 Their Efficiency measure with Big O (the size of function growth in respect to increase in input size)
 
