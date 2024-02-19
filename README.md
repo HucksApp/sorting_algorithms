@@ -1,4 +1,6 @@
 # Sorting Algorithms 🗃 ⏳
+![Sorting Algorithms](https://github.com/HucksApp/sorting_algorithms/assets/58187974/e4ad7902-96bd-4646-8767-6979031ad66a)
+
 
 ## Description 📋
 This repo contain implementation of different sorting algorithm in C.
