@@ -12,15 +12,15 @@ the function time complexity(Big O) 📈
 * Worst case senerio
 
 ## sorts
-* Quick sort
-* Bubble sort
-* Insertion sort
-* Shell sort
-* Selection sort
-* Counting sort
-* Cocktail sort
-* merge sort
-* Heap sort
-* Radix sort
-* Bitonic sort
+* [Quick sort](./3-quick_sort.c)
+* [Bubble sort](./0-bubble_sort.c)
+* [Insertion sort](./1-insertion_sort_list.c)
+* [Shell sort](./100-shell_sort.c)
+* [Selection sort](./2-selection_sort.c)
+* [Counting sort](./102-counting_sort.c)
+* [Cocktail sort](./101-cocktail_sort_list.c)
+* [merge sort](./103-merge_sort.c)
+* [Heap sort](./104-heap_sort.c)
+* [Radix sort](./105-radix_sort.c)
+* [Bitonic sort](./106-bitonic_sort.c)
 
